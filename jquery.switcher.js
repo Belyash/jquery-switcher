@@ -1,21 +1,21 @@
-(function( $, window, document, undefined ) {
+(function($, window, document, undefined) {
     var Switcher = {
-        init: function( options, elem ) {
+        init: function (options, el) {
             var self = this;
 
-            self.elem = elem;
-            self.$elem = $(elem);
+            self.el = el;
+            self.$el = $(el);
 
             self.options = $.extend( {}, $.fn.switcher.options, options );
 
             // Need default wrap?
-            if( self.options.useWrap ) {
-                self.$elem.html(self.options.leftLabel + self.options.runner + self.options.rightLabel);
+            if (self.options.useWrap) {
+                self.$el.html(self.options.leftLabel + self.options.runner + self.options.rightLabel);
             }
 
-            self.$lLabel = $('.b-switcher__label_l .label', self.$elem);
-            self.$runner = $('.b-switcher__runner', self.$elem);
-            self.$rLabel = $('.b-switcher__label_r .label', self.$elem);
+            self.$lLabel = $('.b-switcher__label_l .label', self.$el);
+            self.$runner = $('.b-switcher__runner', self.$el);
+            self.$rLabel = $('.b-switcher__label_r .label', self.$el);
 
             // WTF?
             (function addCssClass() {
@@ -25,7 +25,7 @@
                     cssClass += ' ' + self.options.cssModificator;
                 }
 
-                self.$elem.addClass(cssClass);
+                self.$el.addClass(cssClass);
             })();
 
 
@@ -35,11 +35,11 @@
             };
 
             // Add event for labels
-            self.$lLabel.on('click.switcher', function(e) {
+            self.$lLabel.on('click.switcher', function (e) {
                 self.setStatus(1);
                 e.preventDefault();
             });
-            self.$rLabel.on('click.switcher', function(e) {
+            self.$rLabel.on('click.switcher', function (e) {
                 self.setStatus(0);
                 e.preventDefault();
             });
@@ -61,7 +61,7 @@
              });*/
 
             // Drag'n'Drop
-            self.$runner.on('mousedown.switcher', function() {
+            self.$runner.on('mousedown.switcher', function () {
                 var $parent = self.$runner.parent(),
                     $document = $(document),
                     minPos = 0,
@@ -71,13 +71,14 @@
 
                 self.$runner.addClass('b-switcher__runner_move');
 
-                $document.on('mousemove.switcher', function(e) {
+                $document.on('mousemove.switcher', function (e) {
                     pos = e.clientX - $parent.offset().left + minPos;
-                    if(pos < minPos) {
+                    if (pos < minPos) {
                         pos = minPos;
                     } else if (pos > maxPos) {
                         pos = maxPos;
                     }
+
                     self.$runner.css(
                         {
                             left: pos
@@ -86,11 +87,11 @@
                 });
 
                 // then mouseup unbind event from document and set new status
-                $document.on('mouseup.switcher', function(e) {
+                $document.on('mouseup.switcher', function (e) {
                     $document.unbind('.switcher');
                     self.$runner.removeClass('b-switcher__runner_move').removeAttr('style');
 
-                    if ((((new Date()).getTime() - time) < 200 )) {
+                    if ((((new Date()).getTime() - time) < 200)) {
 
                         var status = self.getStatus();
 
@@ -104,7 +105,7 @@
 
                     } else {
 
-                        if(pos > (maxPos - minPos)/2) {
+                        if (pos > (maxPos - minPos)/2) {
                             self.setStatus(0, false);
                         } else {
                             self.setStatus(1, false);
@@ -116,39 +117,41 @@
             });
 
             // Set first-time status
-            if( self.options.status === 1 ) {
+            if (self.options.status === 1) {
                 self.$lLabel.parent().addClass('b-switcher__label_active');
             } else {
                 self.$rLabel.parent().addClass('b-switcher__label_active');
             }
         },
 
-        setStatus: function( status, animateIE ) {
-            var self = this,
-                animateIE = animateIE === false ? false : true;
+        setStatus: function (status, animateIE) {
+            var self = this;
 
             // Turn ON
-            if( status === 1 && self.options.status !== 1 ) {
+            if (status === 1 && self.options.status !== 1) {
                 self.options.status = status;
                 // emulation CSS3 transition in IE
-                if($.browser.msie && animateIE) {
+                // TODO: $.browser removed in jQuery 1.9
+                if ($.browser && $.browser.msie && animateIE) {
                     self.$runner.animate({left: 0}, 200);
                 }
                 self.$rLabel.parent().removeClass('b-switcher__label_active');
                 self.$lLabel.parent().addClass('b-switcher__label_active');
                 self.options.onTurnOn( status );
-            }
+
             // Turn OFF
-            else if( status === 0 && self.options.status !== 0 ) {
+            } else if (status === 0 && self.options.status !== 0) {
                 self.options.status = status;
+
                 // emulation CSS3 transition in IE
-                if($.browser.msie && animateIE) {
+                // TODO: $.browser removed in jQuery 1.9
+                if ($.browser && $.browser.msie && animateIE) {
                     self.$runner.animate({left: 17}, 200);
                 }
                 self.$lLabel.parent().removeClass('b-switcher__label_active');
                 self.$rLabel.parent().addClass('b-switcher__label_active');
 
-                self.options.onTurnOff( status );
+                self.options.onTurnOff(status);
             }
 
             return self.options.status;
@@ -160,18 +163,17 @@
 
     };
 
-    $.fn.switcher = function( options ) {
-        return this.each(function() {
-            var switcher = Object.create( Switcher );
+    $.fn.switcher = function(options) {
+        return this.each(function () {
+            var switcher = Object.create(Switcher);
 
-            if ( Switcher[ options ] ) {
-                return Switcher[ options ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-            } else if ( typeof options === 'object' || typeof options === 'undefined') {
-                return switcher.init( options, this );
+            if (Switcher[options]) {
+                return Switcher[options].apply(this, Array.prototype.slice.call(arguments, 1));
+            } else if (typeof options === 'object' || typeof options === 'undefined') {
+                return switcher.init(options, this);
             } else {
-                $.error( '"' + options + '" method does not exist in jQuery.switcher');
+                $.error('"' + options + '" method does not exist in jQuery.switcher');
             }
-
         });
     };
 
@@ -186,4 +188,4 @@
         onTurnOff: function( status ) {} // callback на ВЫКЛючение
     };
 
-})( jQuery, window, document );
+})(jQuery, window, document);

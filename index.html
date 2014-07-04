@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Switcher Plugin</title>
+    <link href="jquery.switcher.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="jquery.switcher.js"></script>
+    <script>
+        $(function () {
+            $('#switcher').switcher({
+                useWrap: true,
+                status: 1,
+                onTurnOff: function() {
+                    console.log('Switcher: Turn OFF');
+                },
+                onTurnOn: function() {
+                    console.log('Switcher: Turn ON');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        <h1>jQuery Switcher Plugin</h1>
+        <div class="b-switcher" id="switcher"></div>
+    </div>
+</body>
+</html>
