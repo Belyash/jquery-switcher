@@ -5,16 +5,50 @@
     <link href="jquery.switcher.css" rel="stylesheet">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="jquery.switcher.js"></script>
+    <style>
+        body {
+            background: #f1f1f1;
+            color: #333333;
+        }
+        .wrap {
+            background: #ffffff;
+            border: 1px solid #ebebeb;
+            margin: 20px auto;
+            padding: 12px 20px;
+            width: 800px;
+        }
+        h1, h2, h3 {
+            border-bottom: 1px solid #ebebeb;
+            font-weight: normal;
+            margin: 0 0 12px;
+            padding: 10px;
+        }
+        pre {
+            background: #f1f1f1;
+            border: 1px solid #ebebeb;
+            padding: 10px;
+        }
+    </style>
     <script>
         $(function () {
-            $('#switcher').switcher({
-                useWrap: true,
-                status: 1,
+            $('#switcher').switcher();
+            $('#switcher_1').switcher();
+
+            $('#switcher_2').switcher({
+                leftLabel: "Moscow",
+                rightLabel: "New York"
+            });
+
+            $('#switcher_3').switcher({
+                status: 1
+            });
+
+            $('#switcher_4').switcher({
                 onTurnOff: function() {
-                    console.log('Switcher: Turn OFF');
+                    alert('Switcher: Turn OFF');
                 },
                 onTurnOn: function() {
-                    console.log('Switcher: Turn ON');
+                    alert('Switcher: Turn ON');
                 }
             });
         });
@@ -22,8 +56,50 @@
 </head>
 <body>
     <div class="wrap">
-        <h1>jQuery Switcher Plugin</h1>
-        <div class="b-switcher" id="switcher"></div>
+        <h1>jQuery Switch Plugin</h1>
+        <p>jQuery Switch Plugin</p>
+        <div id="switcher"></div>
+        <h3>List of presets:</h3>
+        <ul>
+            <li><code>useWrap</code> - <b>default true</b></li>
+            <li><code>status</code> - <b>default 0</b></li>
+            <li><code>leftLabel</code> - <b>default ON</b></li>
+            <li><code>rightLabel</code> - <b>default OFF</b></li>
+            <li><code>onTurnOn</code> - callback, when status change to 1</li>
+            <li><code>onTurnOff</code> - callback, when status change to 0</li>
+        </ul>
+        <h3>Default Call</h3>
+        <pre>
+            $('#switcher_1').switcher();
+        </pre>
+        <div id="switcher_1"></div>
+        <h3>With Custom Label</h3>
+        <pre>
+            $('#switcher_2').switcher({
+                leftLabel: "Moscow",
+                rightLabel: "New York"
+            });
+        </pre>
+        <div id="switcher_2"></div>
+        <h3>Default ON</h3>
+        <pre>
+            $('#switcher_3').switcher({
+                status: 1
+            });
+        </pre>
+        <div id="switcher_3"></div>
+        <h3>Callbacks</h3>
+        <pre>
+            $('#switcher_4').switcher({
+                onTurnOff: function() {
+                    alert('Switcher: Turn OFF');
+                },
+                onTurnOn: function() {
+                    alert('Switcher: Turn ON');
+                }
+            });
+        </pre>
+        <div id="switcher_4"></div>
     </div>
 </body>
 </html>

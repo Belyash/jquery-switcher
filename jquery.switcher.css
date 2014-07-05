@@ -1,99 +1,93 @@
 /***********************************************************************************************************************
 ******************************************   Styles for jquery.switcher.js   *******************************************
 ***********************************************************************************************************************/
-.b-switcher {
+.ui-switch {
+    background: #f2f2f2;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 0 1px rgba(0,0,0,0.3) inset, 0 0 1px rgba(0,0,0,0.3);
     color: #999999;
-    font-size: 11px;
-    margin: 0 0 5px 0;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    height: 24px;
+    line-height: 20px;
+    margin: 0 0 12px;
+    padding: 4px 8px;
+    position: relative;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
 }
-.b-switcher__switch,
-.b-switcher__runner,
-.b-switcher__label_l,
-.b-switcher__label_r {
+.ui-switch__switch,
+.ui-switch__label_l,
+.ui-switch__label_r {
     display: inline-block;
     line-height: 20px;
     vertical-align: middle;
 }
-.ie7 .b-switcher__switch,
-.ie7 .b-switcher__runner,
-.ie7 .b-switcher__label_l,
-.ie7 .b-switcher__label_r {
+.ui-switch__label {
+    cursor: pointer;
+    padding: 2px 4px;
+}
+.ie7 .ui-switch__switch,
+.ie7 .ui-switch__label_l,
+.ie7 .ui-switch__label_r {
     display: inline;
     zoom: 1;
 }
-.b-switcher__label_l a,
-.b-switcher__label_r a {
-    border-bottom: 1px dotted #456A9C;
-    cursor: pointer;
-    text-decoration: none;
+.ui-switch__label_active {
+    color: #333333;
 }
-.b-switcher__label_active a,
-.b-switcher__label_active span {
-    border: none;
-    color: #000000;
+.ui-switch__switch {
+    background: #3d3d3d;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45) inset;
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45) inset;
+    -o-box-shadow: 0 0 5px rgba(0, 0, 0, 0.45) inset;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.45) inset;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -o-border-radius: 12px;
+    border-radius: 12px;
     cursor: default;
-}
-.b-switcher__switch {
-    background: #D3D3D3;
-    -o-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.45) inset;
-    -moz-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.45) inset;
-    -webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.45) inset;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.45) inset;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    cursor: default;
-    height: 15px;
-    margin: 0 3px;
-    padding: 1px;
+    height: 24px;
     overflow: hidden;
     position: relative;
     vertical-align: bottom;
-    width: 33px;
+    width: 40px;
 }
-.ie7 .b-switcher__switch,
-.ie8 .b-switcher__switch {
-    background: url("/_images/s-elements.png") 0 -120px;
-}
-.b-switcher__runner {
+.ui-switch__runner {
     background: red;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
     cursor: pointer;
-    height: 15px;
-    left: 17px;
-    margin: 0;
-    position: relative;
-    top: -4px;
+    height: 20px;
+    left: 16px;
+    margin: 2px;
+    position: absolute;
+    top: 0;
     -webkit-transition: left .2s ease-out;
     -moz-transition: left .2s ease-out;
     -ms-transition: left .2s ease-out;
     -o-transition: left .2s ease-out;
     transition: left .2s ease-out;
-    width: 15px;
+    width: 20px;
     z-index: 1;
 }
-.ie7 .b-switcher__runner {
+.ie7 .ui-switch__runner {
     top: 0;
 }
-.b-switcher__runner_move {
+.ui-switch__runner_move {
     -webkit-transition: none;
     -moz-transition: none;
     -ms-transition: none;
     -o-transition: none;
     transition: none;
 }
-.b-switcher__label_active + .b-switcher__switch .b-switcher__runner {
+.ui-switch__label_active + .ui-switch__switch .ui-switch__runner {
     left: 0;
-}
-
-.b-switcher_right {
-    float: right;
-}
-.b-switcher_clear {
-    clear: both;
 }

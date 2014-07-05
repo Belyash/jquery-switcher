@@ -10,16 +10,20 @@
 
             // Need default wrap?
             if (self.options.useWrap) {
-                self.$el.html(self.options.leftLabel + self.options.runner + self.options.rightLabel);
+                self.$el.html(
+                    '<div class="ui-switch__label ui-switch__label_l">' + self.options.leftLabel + '</div>' +
+                    '<div class="ui-switch__switch"><div class="ui-switch__runner"></div></div>' +
+                    '<div class="ui-switch__label ui-switch__label_r">' + self.options.rightLabel + '</div>'
+                );
             }
 
-            self.$lLabel = $('.b-switcher__label_l .label', self.$el);
-            self.$runner = $('.b-switcher__runner', self.$el);
-            self.$rLabel = $('.b-switcher__label_r .label', self.$el);
+            self.$lLabel = $('.ui-switch__label_l', self.$el);
+            self.$runner = $('.ui-switch__runner', self.$el);
+            self.$rLabel = $('.ui-switch__label_r', self.$el);
 
             // WTF?
             (function addCssClass() {
-                var cssClass = 'b-switcher';
+                var cssClass = 'ui-switch';
 
                 if (typeof self.options.cssModificator == 'string' && self.options.cssModificator.length > 0) {
                     cssClass += ' ' + self.options.cssModificator;
@@ -69,7 +73,7 @@
                     pos = 0,
                     time = (new Date()).getTime();
 
-                self.$runner.addClass('b-switcher__runner_move');
+                self.$runner.addClass('ui-switch__runner_move');
 
                 $document.on('mousemove.switcher', function (e) {
                     pos = e.clientX - $parent.offset().left + minPos;
@@ -89,7 +93,7 @@
                 // then mouseup unbind event from document and set new status
                 $document.on('mouseup.switcher', function (e) {
                     $document.unbind('.switcher');
-                    self.$runner.removeClass('b-switcher__runner_move').removeAttr('style');
+                    self.$runner.removeClass('ui-switch__runner_move').removeAttr('style');
 
                     if ((((new Date()).getTime() - time) < 200)) {
 
@@ -117,10 +121,10 @@
             });
 
             // Set first-time status
-            if (self.options.status === 1) {
-                self.$lLabel.parent().addClass('b-switcher__label_active');
+            if (self.options.status) {
+                self.$lLabel.addClass('ui-switch__label_active');
             } else {
-                self.$rLabel.parent().addClass('b-switcher__label_active');
+                self.$rLabel.addClass('ui-switch__label_active');
             }
         },
 
@@ -135,8 +139,8 @@
                 if ($.browser && $.browser.msie && animateIE) {
                     self.$runner.animate({left: 0}, 200);
                 }
-                self.$rLabel.parent().removeClass('b-switcher__label_active');
-                self.$lLabel.parent().addClass('b-switcher__label_active');
+                self.$rLabel.removeClass('ui-switch__label_active');
+                self.$lLabel.addClass('ui-switch__label_active');
                 self.options.onTurnOn( status );
 
             // Turn OFF
@@ -148,8 +152,8 @@
                 if ($.browser && $.browser.msie && animateIE) {
                     self.$runner.animate({left: 17}, 200);
                 }
-                self.$lLabel.parent().removeClass('b-switcher__label_active');
-                self.$rLabel.parent().addClass('b-switcher__label_active');
+                self.$lLabel.removeClass('ui-switch__label_active');
+                self.$rLabel.addClass('ui-switch__label_active');
 
                 self.options.onTurnOff(status);
             }
@@ -180,9 +184,8 @@
     $.fn.switcher.options = {
         status: 0,  // 0 или 1, по умолчанию выключен, т.е. 0
         useWrap: true,
-        leftLabel: '<div class="b-switcher__label b-switcher__label_l"><a href="#" class="label">ON</a></div>',
-        rightLabel: '<div class="b-switcher__label b-switcher__label_r"><a href="#" class="label">OFF</a></div>',
-        runner: '<div class="b-switcher__switch"><div class="b-switcher__runner"></div></div>',
+        leftLabel: 'ON',
+        rightLabel: 'OFF',
         cssModificator: '',
         onTurnOn: function( status ) {}, // callback на ВКЛючение
         onTurnOff: function( status ) {} // callback на ВЫКЛючение
