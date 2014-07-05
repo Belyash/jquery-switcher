@@ -1,12 +1,20 @@
 #jQuery Switch Plugin
 
 ###List Of Presets
-- useWrap - default true
-- status - default 0
-- leftLabel - default ON
-- rightLabel - default OFF
-- onTurnOn - callback, call when status change to 1
-- onTurnOff - callback, call when status change to 0
+<dl>
+    <dt>useWrap</dt>
+    <dd>default true</dd>
+    <dt>status</dt>
+    <dd>default 0</dd>
+    <dt>leftLabel</dt>
+    <dd>default ON</dd>
+    <dt>rightLabel</dt>
+    <dd>default OFF</dd>
+    <dt>onTurnOn</dt>
+    <dd>callback, call when status change to 1</dd>
+    <dt>onTurnOff</dt>
+    <dd>callback, call when status change to 0</dd>
+</dl>
 
 ###Default Call
 ```javascript
