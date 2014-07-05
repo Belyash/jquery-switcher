@@ -1,6 +1,6 @@
 #jQuery Switch Plugin
 
-##List Of Presets
+###List Of Presets
 - useWrap - default true
 - status - default 0
 - leftLabel - default ON
@@ -8,12 +8,12 @@
 - onTurnOn - callback, when status change to 1
 - onTurnOff - callback, when status change to 0
 
-##Default Call
+###Default Call
 ```javascript
 $('#switch').switcher();
 ```
 
-##With Custom Text Label
+###With Custom Text Label
 ```javascript
 $('#switch').switcher({
     leftLabel: "Moscow",
@@ -21,14 +21,14 @@ $('#switch').switcher({
 });
 ```
 
-##Default ON
+###Default ON
 ```javascript
 $('#switch').switcher({
     status: 1
 });
 ```
 
-##Callbacks
+###Callbacks
 ```javascript
 $('#switcher_4').switcher({
     onTurnOff: function() {
