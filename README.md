@@ -1,5 +1,7 @@
 #jQuery Switch Plugin
 
+[Demo](http://belyash.github.io/jquery-switcher/)
+
 ###List Of Presets
 <dl>
     <dt>useWrap</dt>
@@ -46,4 +48,6 @@ $('#switcher_4').switcher({
         alert('Switcher: Turn ON');
     }
 });
+
+[Demo](http://belyash.github.io/jquery-switcher/)
 ```
