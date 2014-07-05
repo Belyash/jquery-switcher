@@ -5,8 +5,8 @@
 - status - default 0
 - leftLabel - default ON
 - rightLabel - default OFF
-- onTurnOn - callback, when status change to 1
-- onTurnOff - callback, when status change to 0
+- onTurnOn - callback, call when status change to 1
+- onTurnOff - callback, call when status change to 0
 
 ###Default Call
 ```javascript
